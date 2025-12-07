@@ -1,0 +1,14 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    labels:
+      - project=seymour-frontend
+    ports:
+      - '${APP_PORT:-3000}:3000'
+    restart: unless-stopped
+    volumes:
+      - ./src:/frontend/src
+    environment:
+      - WATCHPACK_POLLING=true
